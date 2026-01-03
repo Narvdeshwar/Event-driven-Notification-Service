@@ -6,8 +6,8 @@ import (
 )
 
 type NotificationRepository interface {
-	Insert(ctx Context.Context, n *model.Notification) error
-	FetchPending(ctx context.Context, int limit) ([]model.Notification, error)
+	Insert(ctx context.Context, n *model.Notification) error
+	FetchPending(ctx context.Context, limit int) ([]model.Notification, error)
 	UpdateStatus(ctx context.Context, id string, status model.Status) error
 	IncrementAttempts(ctx context.Context, id string) error
 }
