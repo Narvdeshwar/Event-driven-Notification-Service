@@ -41,3 +41,12 @@ func (p *Poller) fetch() {
 		p.jobQueue <- job
 	}
 }
+
+func NewPoller(repo store.NotificationRepository, queue chan model.Notification, batchSize int, interval time.Duration) *Poller {
+	return &Poller{
+		repo:      repo,
+		jobQueue:  queue,
+		batchSize: batchSize,
+		interval:  interval,
+	}
+}

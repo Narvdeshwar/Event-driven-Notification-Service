@@ -56,3 +56,12 @@ func (w *Worker) handleFailure(
 
 	w.repo.ScheduleRetry(ctx, n.Id, nextRetry)
 }
+
+func NewWorker(id int,queue <-chan model.Notification,repo store.NotificationRepository,notifier notifier.Notifier)*Worker{
+	return &Worker{
+		id:id,
+		queue:queue,
+		repo:repo,
+		notifier:notifier,
+	}
+}
