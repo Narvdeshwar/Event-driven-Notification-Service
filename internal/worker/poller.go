@@ -16,6 +16,7 @@ type Poller struct {
 }
 
 func (p *Poller) Start(ctx context.Context) {
+	log.Println("Poller start")
 	ticker := time.NewTicker(p.interval)
 	defer ticker.Stop()
 	for {

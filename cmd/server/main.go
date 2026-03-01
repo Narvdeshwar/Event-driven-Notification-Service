@@ -36,6 +36,7 @@ func main() {
 		log.Fatal("Could not connect to database after retries:", err)
 	}
 	defer db.Close()
+	log.Println("Before the migrations start")
 
 	// run migrations after db is connected
 	migrations.Run(db)
@@ -55,6 +56,7 @@ func main() {
 	jobQueue := make(chan model.Notification, 100)
 	poller := worker.NewPoller(repo, jobQueue, 10, 5*time.Second)
 	go poller.Start(ctx)
+	log.Println("Logger goroutine is created")
 
 	emailNotifier:=notifier.NewEmailNotifier()
 
